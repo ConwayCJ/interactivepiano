@@ -245,14 +245,25 @@ function App() {
   // const [endingNote, setEndingNote] = useState(88)
 
   // const userKeys = keys.slice(startingNote, endingNote)
-  //const firstNote = "https://cdn.freesound.org/previews/39/39148_35187-lq.mp3"
+  // const firstNote = "https://cdn.freesound.org/previews/39/39148_35187-lq.mp3"
+
+  /**
+   * @param {number} noteNumber 
+   * 
+   * @description this is a function that plays a note from the given CDN
+   * firstnote: https://cdn.freesound.org/previews/39/39148_35187-lq.mp3
+   * 
+   * 
+   */
 
   function playNote(noteNumber) {
-    const startingNote = noteNumber + 47 + 27
-
-    const audio = new Audio(`https://cdn.freesound.org/previews/39/391${startingNote}_35187-lq.mp3`)
+    console.log(noteNumber)
+    //startingNote - target the first note from the CDN
+    const startingNote = noteNumber + 147 + 27
+    //39199 works, going to 391100 prob
+    const audio = new Audio(`https://cdn.freesound.org/previews/39/39${startingNote}_35187-lq.mp3`)
+    console.log(audio)
     audio.play()
-
   }
 
   return (
@@ -260,7 +271,7 @@ function App() {
     <ul className="set">
 
       {keys.map((key, index) => {
-
+        // Handles broken CDN, plays note instead
         if (index + 48 + 27 == 92) {
           return (
             <li
@@ -268,13 +279,14 @@ function App() {
               className={`white f`}
               onClick={() => {
                 const audio = new Audio('the_lick.mp3')
+
                 audio.play()
               }}
 
             ></li>
           )
         }
-
+        // Rest of the keys
         if (key.white) {
           return (
             <li
